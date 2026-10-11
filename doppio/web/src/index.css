@@ -1,0 +1,68 @@
+:root {
+  color-scheme: light dark;
+  --bg: #fbfaf7;
+  --fg: #1d1d1b;
+  --muted: #6b6a66;
+  --link: #ffe58a;
+  font-family: system-ui, sans-serif;
+  font-size: 18px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161615;
+    --fg: #ecebe6;
+    --muted: #9b9a94;
+    --link: #5b4d12;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.reader {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 720px) {
+  .pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pane {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.token {
+  cursor: pointer;
+  border-radius: 0.25rem;
+  padding: 0 0.1rem;
+}
+
+.token.linked {
+  background: var(--link);
+}
+
+.token.selected {
+  font-weight: 600;
+  text-decoration: underline;
+}
