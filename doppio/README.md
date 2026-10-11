@@ -13,7 +13,28 @@ hard-coded Spanish/Italian sentence with tap-to-highlight.
 - `crates/reader_core/`: Rust library for segmentation, alignment, and storage.
   No server and no SQL.
 - `web/`: TypeScript + React front end.
+  - `web/src/lab/`: the prototype switcher (tabs, URL hash routing, 1–9 keys).
+  - `web/src/prototypes/`: one file per prototype, plus the registry in `index.ts`.
+  - `web/src/sample.ts`: hard-coded sentence pairs and word links for the prototypes.
 - `docs/design.md`: architecture decisions and open questions.
+
+## Prototype lab
+
+The web app opens a lab with one tab per interaction prototype. Each tab is a
+self-contained screen that tests one idea:
+
+| Key | Prototype | Question it answers |
+|---|---|---|
+| 1 | Side by side | Does a two-pane layout with linked highlights work? |
+| 2 | Word card | Is a card with counterpart, grammar, and context better than highlights alone? |
+| 3 | Interleaved | Is a stacked, phone-first layout with hidden translations usable? |
+
+Switch prototypes with the tabs, the number keys, the back button, or a link
+such as `#word-card`.
+
+To add a prototype, create a component in `web/src/prototypes/`, then add an
+entry to the array in `web/src/prototypes/index.ts`. The array order sets the
+tab order and the number-key shortcuts.
 
 ## Development
 

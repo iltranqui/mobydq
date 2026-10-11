@@ -1,9 +1,12 @@
 :root {
   color-scheme: light dark;
   --bg: #fbfaf7;
+  --surface: #ffffff;
   --fg: #1d1d1b;
   --muted: #6b6a66;
-  --link: #ffe58a;
+  --line: #e4e1d8;
+  --accent: #ffe58a;
+  --accent-fg: #1d1d1b;
   font-family: system-ui, sans-serif;
   font-size: 18px;
 }
@@ -11,9 +14,12 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #161615;
+    --surface: #1f1f1d;
     --fg: #ecebe6;
     --muted: #9b9a94;
-    --link: #5b4d12;
+    --line: #34332f;
+    --accent: #5b4d12;
+    --accent-fg: #fff6cf;
   }
 }
 
@@ -23,16 +29,102 @@ body {
   color: var(--fg);
 }
 
-.reader {
-  max-width: 48rem;
+/* Lab shell */
+
+.lab {
+  max-width: 52rem;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1rem 1rem 8rem;
+}
+
+.brand {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.switcher {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--fg);
+  font-size: 0.9rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tab.active {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
+}
+
+kbd {
+  font-family: ui-monospace, monospace;
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.lab-head h1 {
+  margin: 1rem 0 0.25rem;
+  font-size: 1.4rem;
 }
 
 .hint {
+  margin: 0 0 1.25rem;
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+.muted {
+  color: var(--muted);
+}
+
+/* Sentences and words */
+
+.line {
+  margin: 0 0 0.75rem;
+  line-height: 1.8;
+}
+
+.line.big {
+  font-size: 1.15rem;
+}
+
+.line.muted {
+  font-size: 0.95rem;
+}
+
+.token {
+  cursor: pointer;
+  border-radius: 0.25rem;
+  padding: 0 0.1rem;
+}
+
+.token.linked {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.token.selected {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Side by side */
 
 .pair {
   display: grid;
@@ -47,22 +139,84 @@ body {
   }
 }
 
-.pane {
-  margin: 0;
-  line-height: 1.8;
+/* Interleaved and word card blocks */
+
+.block {
+  padding: 0.5rem 0 1rem;
+  border-bottom: 1px solid var(--line);
 }
 
-.token {
+.toggle {
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.85rem;
   cursor: pointer;
-  border-radius: 0.25rem;
-  padding: 0 0.1rem;
 }
 
-.token.linked {
-  background: var(--link);
+/* Word card */
+
+.card {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 1.5rem;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0 -8px 24px rgb(0 0 0 / 0.12);
 }
 
-.token.selected {
-  font-weight: 600;
-  text-decoration: underline;
+.card p {
+  margin: 0 0 0.5rem;
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.card-word {
+  font-size: 1.4rem;
+}
+
+.card-note {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.card-label {
+  margin: 0.75rem 0 0.25rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.chip {
+  display: inline-block;
+  margin-right: 0.35rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.close {
+  padding: 0 0.25rem;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
 }
